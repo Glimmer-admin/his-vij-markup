@@ -1,0 +1,10 @@
+// Foundation（基本設定）
+@use "foundation/base";
+@use "foundation/reset";
+
+// Layout（レイアウト）
+@use "layout/header";
+@use "layout/footer";
+
+// Component(コンポーネント)
+@use "components/breadcrumb";

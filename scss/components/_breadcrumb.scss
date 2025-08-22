@@ -1,0 +1,71 @@
+@use "../foundation/all";
+
+/*===========================================================================*/
+/*  breadcrumb  */
+/*===========================================================================*/
+.c-breadcrumb {
+  padding-top: 4.5rem;
+
+  &__inner {
+    > span {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 2rem;
+      a {
+        transition: opacity 0.3s ease;
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+
+      > span {
+        position: relative;
+        font-size: 1.2rem;
+        font-weight: 500;
+        line-height: 1.55;
+
+        &::before {
+          background: url("../../assets/images/common/breadcrumb-arrow.svg") no-repeat center center/contain;
+          content: "";
+          height: 0.6rem;
+          left: calc(100% + 5px);
+          position: absolute;
+          top: 0.7rem;
+          width: 0.6rem;
+        }
+
+        &:last-of-type::before {
+          display: none;
+        }
+
+        a {
+          color: #8a8a8a;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+@include all.sp {
+  .c-breadcrumb {
+    padding-top: 0;
+
+    &__inner {
+      > span {
+        gap: 1.6rem;
+
+        > span {
+          font-size: 1rem;
+
+          &::before {
+            height: 0.6rem;
+            left: calc(100% + 5px);
+            top: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}
