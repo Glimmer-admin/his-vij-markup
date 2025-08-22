@@ -1,0 +1,30 @@
+# OSごとのゴミファイル
+.DS_Store
+Thumbs.db
+
+# Node.js
+node_modules/
+
+# 環境設定
+.env
+.env.*
+
+# ビルド成果物
+dist/
+build/
+
+# ログファイル
+*.log
+
+# IDE設定
+.vscode/
+.idea/
+
+# CSSマップファイルを無視（ビルド結果など）
+*.css.map
+
+# JSマップファイルも無視したい場合
+*.js.map
+
+# package-lock.json を無視
+package-lock.json

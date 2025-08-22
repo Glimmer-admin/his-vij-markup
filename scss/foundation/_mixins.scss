@@ -1,3 +1,8 @@
+/*===========================================================================*/
+/*  mixin  */
+/*===========================================================================*/
+@use "sass:math";
+
 @mixin sp {
   @media (max-width: 900px) {
     @content;
@@ -8,4 +13,56 @@
   @media (min-width: 901px) {
     @content;
   }
+}
+
+// =============================================================================
+// CLAMP() 自動算出 MIXIN
+// =============================================================================
+
+// 基本的なclamp()算出mixin
+@mixin clamp($property, $min, $max, $min-width: 375px, $max-width: 1200px) {
+  // 単位を統一（pxに変換）
+  $min-px: if(math.unit($min) == "rem", $min * 16, $min);
+  $max-px: if(math.unit($max) == "rem", $max * 16, $max);
+  $min-width-px: if(math.unit($min-width) == "rem", $min-width * 16, $min-width);
+  $max-width-px: if(math.unit($max-width) == "rem", $max-width * 16, $max-width);
+
+  // 単位を除去して純粋な数値として計算
+  $min-num: math.div($min-px, 1px);
+  $max-num: math.div($max-px, 1px);
+  $min-width-num: math.div($min-width-px, 1px);
+  $max-width-num: math.div($max-width-px, 1px);
+
+  // vw値を計算（単位なしの数値で計算）
+  $slope: math.div(($max-num - $min-num), ($max-width-num - $min-width-num));
+  $y-axis-intersection: $min-num - $slope * $min-width-num;
+
+  #{$property}: clamp(#{$min}, calc(#{$y-axis-intersection}px + #{$slope * 100}vw), #{$max});
+}
+
+// =============================================================================
+// 各プロパティのclampを算出
+// =============================================================================
+$breakpoint-sp-min: 375px;
+$breakpoint-sp-max: 767px;
+$breakpoint-pc-min: 768px;
+$breakpoint-pc-max: 1440px;
+// PC用
+@mixin clamp-pc($property, $min, $max) {
+  @include clamp($property, $min, $max, $breakpoint-pc-min, $breakpoint-pc-max);
+}
+// SP用
+@mixin clamp-sp($property, $min, $max) {
+  @include clamp($property, $min, $max, $breakpoint-sp-min, $breakpoint-sp-max);
+}
+
+// PC用：最大値のみ入力 → 最小値は自動で0.7倍
+@mixin clamp-pc-auto($property, $max) {
+  $min: if(math.unit($max) == "rem", $max * 0.7, math.div($max * 7, 10)); // 単位維持
+  @include clamp($property, $min, $max, $breakpoint-pc-min, $breakpoint-pc-max);
+}
+// SP用：最大値のみ入力 → 最小値は自動で0.7倍
+@mixin clamp-sp-auto($property, $max) {
+  $min: if(math.unit($max) == "rem", $max * 0.7, math.div($max * 7, 10)); // 単位維持
+  @include clamp($property, $min, $max, $breakpoint-sp-min, $breakpoint-sp-max);
 }
