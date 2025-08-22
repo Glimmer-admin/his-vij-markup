@@ -5,12 +5,13 @@
 /*===========================================================================*/
 html {
   font-family: "Noto Sans JP", sans-serif;
-  color: all.$text-black;
+  color: #272727;
   font-size: 62.5%;
 }
 
 body {
   min-width: 375px;
+  font-feature-settings: "palt" on;
   &.modal-open {
     overflow: hidden;
   }
@@ -78,7 +79,7 @@ a {
 /*  utility  */
 /*===========================================================================*/
 .font-en {
-  font-family: "Plus Jakarta Sans", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 /*===========================================================================*/
@@ -110,10 +111,10 @@ a {
 /*  hover */
 /*===========================================================================*/
 @media screen and (min-width: 901px) {
-  .hover-nomal {
+  .hover-normal {
     transition: opacity 0.5s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
   }
-  .hover-nomal:hover {
+  .hover-normal:hover {
     opacity: 0.7;
   }
 }
