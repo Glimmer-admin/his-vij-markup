@@ -1,0 +1,197 @@
+@use "all";
+
+/*===========================================================================*/
+/*  common  */
+/*===========================================================================*/
+html {
+  font-family: "Noto Sans JP", sans-serif;
+  color: all.$text-black;
+  font-size: 62.5%;
+}
+
+body {
+  min-width: 375px;
+  &.modal-open {
+    overflow: hidden;
+  }
+}
+main {
+  padding-top: all.rem(83);
+  @include all.sp {
+    padding-top: all.rem(75);
+  }
+  &.main-top {
+    padding-top: 0;
+  }
+}
+span {
+  display: inline-block;
+}
+
+picture {
+  display: block;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+a {
+  display: inline-block;
+}
+
+.pc-only {
+  display: block;
+}
+
+.br-pc-only {
+  display: inline-block;
+}
+
+.sp-only {
+  display: none;
+}
+
+.br-sp-only {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .pc-only {
+    display: none;
+  }
+
+  .br-pc-only {
+    display: none;
+  }
+
+  .sp-only {
+    display: block;
+  }
+
+  .br-sp-only {
+    display: inline-block;
+  }
+}
+/*===========================================================================*/
+/*  utility  */
+/*===========================================================================*/
+.font-en {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/*===========================================================================*/
+/*  component, color  */
+/*===========================================================================*/
+.color-green {
+  color: #00b2ae;
+}
+
+/* layout */
+.l-inner {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+@media screen and (max-width: 900px) {
+  .l-inner {
+    max-width: 500px;
+  }
+}
+
+/* wrapper */
+.l-wrapper {
+  @include all.sp {
+    padding: 0 20px;
+  }
+}
+
+/*===========================================================================*/
+/*  hover */
+/*===========================================================================*/
+@media screen and (min-width: 901px) {
+  .hover-nomal {
+    transition: opacity 0.5s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
+  }
+  .hover-nomal:hover {
+    opacity: 0.7;
+  }
+}
+.hover-border {
+  position: relative;
+}
+.hover-border::before {
+  background-color: #121212;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  transition: width 0.9s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
+}
+.hover-border-white {
+  position: relative;
+}
+.hover-border-white::before {
+  background-color: #fff;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  transition: width 0.9s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
+}
+a:hover .hover-border::before,
+a:hover .hover-border-white::before,
+.hover-parent:hover .hover-border::before {
+  width: 100%;
+}
+
+.hover-spin {
+  transition: transform 1s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
+  transform: rotate(0);
+}
+a:hover .hover-spin {
+  transform: rotate(405deg);
+}
+.hover-spin-reverse {
+  transition: transform 1s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
+  transform: rotate(0);
+}
+a:hover .hover-spin-reverse {
+  transform: rotate(315deg);
+}
+
+.hover-text {
+  position: relative;
+  color: #121212;
+  line-height: 1.6;
+}
+
+.hover-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #70c3eb 0%, #6c77c9 47%, #f69b9d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
+}
+
+.hover-text:hover::after {
+  clip-path: inset(0);
+}
+.hover-text-parent {
+  &:hover {
+    .hover-text::after {
+      clip-path: inset(0);
+    }
+  }
+}
