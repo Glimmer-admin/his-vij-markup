@@ -1,8 +1,21 @@
 @use "../foundation/all";
 
 /*===========================================================================*/
-/*  top  */
+/*  top-map  */
 /*===========================================================================*/
 .top {
-  background-color: pink;
+  &-map {
+    &__inner {
+      border: 2px solid #e4e4e4;
+      border-radius: 10px;
+    }
+    &__content {
+      background-color: #f7f7f7;
+      width: calc(100% * 732 / 1160);
+    }
+    &-appeal {
+      background-color: #fff;
+      width: calc(100% * 428 / 1160);
+    }
+  }
 }

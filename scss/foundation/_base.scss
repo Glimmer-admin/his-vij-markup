@@ -103,6 +103,8 @@ a {
 
 /* wrapper */
 .l-wrapper {
+  @include all.clamp-pc-auto(padding-left, 45px);
+  @include all.clamp-pc-auto(padding-right, 45px);
   @include all.sp {
     padding: 0 20px;
   }

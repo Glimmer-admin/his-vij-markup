@@ -109,6 +109,10 @@ a {
   }
 }
 /* wrapper */
+.l-wrapper {
+  padding-left: clamp(31.5px, 16.0714285714px + 2.0089285714vw, 45px);
+  padding-right: clamp(31.5px, 16.0714285714px + 2.0089285714vw, 45px);
+}
 @media (max-width: 767px) {
   .l-wrapper {
     padding: 0 20px;
@@ -1128,4 +1132,4 @@ th {
     left: calc(100% + 5px);
     top: 0.5rem;
   }
-}/*# sourceMappingURL=common.css.map */
+}
