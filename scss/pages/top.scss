@@ -6,16 +6,133 @@
 .top {
   &-map {
     &__inner {
-      border: 2px solid #e4e4e4;
       border-radius: 10px;
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
     }
     &__content {
       background-color: #f7f7f7;
       width: calc(100% * 732 / 1160);
+      padding-top: 0;
+      padding-right: 0;
+      padding-bottom: 0;
+      @include all.clamp-pc-auto(padding-left, 40px);
+      border: 2px solid #e4e4e4;
+      border-right: none;
+      border-radius: 10px 0 0 10px;
+      height: 440px;
+      position: relative;
+      svg {
+        width: 100%;
+      }
+      &__text {
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: 0.48px;
+        position: absolute;
+        top: 35px;
+        left: 40px;
+      }
     }
-    &-appeal {
+
+    &__area__link {
+      cursor: pointer;
+      path {
+        fill: #e8e8e8;
+        stroke: transparent;
+        transition: fill 0.2s, stroke 0.2s;
+      }
+      .pill rect {
+        fill: #cfcfd7;
+      }
+      .pill text {
+        fill: #fff;
+        font: 600 14px/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        dominant-baseline: middle;
+        text-anchor: middle;
+        padding: 4px 12px 5px;
+      }
+      &:hover path,
+      &:focus-visible path {
+        fill: #bbbad0;
+        stroke: #bbbad0;
+      }
+      &:hover .pill rect,
+      &:focus-visible .pill rect {
+        stroke: #110a95b2;
+        fill: #110a95b2;
+      }
+    }
+    &__appeal {
+      &__pref {
+        display: none;
+        &.is-show {
+          display: block;
+        }
+      }
+    }
+    &__appeal {
+      background: url(/assets/images/top/top_map_landscape.png) no-repeat center center/cover;
+      width: calc(100% * 428 / 1160);
+      @include all.clamp-pc(padding-top, 50px, 72px);
+      @include all.clamp-pc(padding-bottom, 50px, 72px);
+      @include all.clamp-pc(padding-right, 35px, 50px);
+      @include all.clamp-pc(padding-left, 35px, 50px);
       background-color: #fff;
       width: calc(100% * 428 / 1160);
+      border-radius: 0 10px 10px 0;
+      height: 440px;
+      &__pref {
+        display: none;
+        &.is-show {
+          display: block;
+        }
+      }
+      &__prefecture {
+        position: relative;
+        padding-top: 37px;
+        color: #fff;
+        @include all.clamp-pc(font-size, 20px, 26px);
+        line-height: 1.4;
+        letter-spacing: 1.82px;
+        text-align: center;
+        @include all.clamp-pc(margin-bottom, 21px, 30px);
+        &::before {
+          content: "";
+          width: 27px;
+          height: 27px;
+          background: url(/assets/images/common/icon_pin.svg) no-repeat center center/contain;
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+      &__description {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.75;
+        letter-spacing: 0.7px;
+        @include all.clamp-pc(margin-bottom, 14px, 20px);
+      }
+      &__box {
+        width: 100%;
+        text-align: center;
+        border-radius: 5px;
+        border: 1px solid #fff;
+      }
+      &__link {
+        padding-top: 13px;
+        padding-bottom: 14px;
+        color: #fff;
+        @include all.clamp-pc(font-size, 13px, 14px);
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: 0.7px;
+      }
     }
   }
 }
