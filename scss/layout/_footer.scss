@@ -1,174 +1,165 @@
 @use "../foundation/all";
 
+/*===========================================================================*/
+/*  footer  */
+/*===========================================================================*/
 .footer {
-  background: url(../../assets/images/common/footer_bg.png) no-repeat center center/cover;
-  padding-top: 6rem;
-  padding-bottom: 7.3rem;
+  @include all.clamp-pc-auto(padding-top, 60px);
+  @include all.clamp-pc-auto(padding-bottom, 64px);
+  background: all.$color-black;
+  @include all.sp {
+    @include all.clamp-sp-auto(padding-top, 42px);
+    @include all.clamp-sp-auto(padding-bottom, 42px);
+    @include all.clamp-sp-auto(padding-right, 28px);
+    @include all.clamp-sp-auto(padding-left, 28px);
+  }
   &__inner {
-    max-width: 1260px;
+    max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    @include all.sp {
+      max-width: 308px;
+    }
   }
   &__logo {
-    width: 27.6rem;
-    height: 4.6rem;
-    margin-bottom: 4rem;
-  }
-  &__address {
-    margin-bottom: 2.1rem;
-    color: #fff;
-    font-size: 1.3rem;
-    font-weight: 400;
-    letter-spacing: 0.39px;
-  }
-  &__contact {
-    display: block;
-    border-radius: 0.6rem;
-    background: #2c2c2c;
-    width: 18.4rem;
-    > span {
-      color: #fff;
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: 500;
-      letter-spacing: 0.36px;
-      padding-top: 1.2rem;
-      padding-bottom: 1.4rem;
-      width: 100%;
-      span {
-        line-height: 1.8;
-      }
+    @include all.clamp-pc-auto(width, 124px);
+    height: auto;
+    @include all.sp {
+      @include all.clamp-sp-auto(width, 133px);
     }
   }
-  &__nav {
-    &__inner {
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-end;
-      gap: 5rem;
-    }
-  }
-  &__copyright {
-    margin-top: 3.8rem;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 0.88;
-    opacity: 0.3;
-  }
-  &__list {
+  &__box {
     display: flex;
     align-items: flex-start;
-    gap: 1.5rem;
-    flex-direction: column;
-    &.--business {
-      .footer__link {
-        span {
-          color: #fff;
-          font-size: 1.1rem;
-          font-weight: 500;
-          line-height: 1.8;
-          padding-left: 0.5em;
-          position: relative;
-          &::after {
-            content: "-";
-            display: block;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            left: 0;
-            font-size: 1.1rem;
-          }
-        }
-      }
-    }
-  }
-  &__link {
-    span {
-      color: #fff;
-      font-size: 1.4rem;
-      font-weight: 500;
-      line-height: 1.8;
-    }
-  }
-  &__detail {
-    display: block;
-    margin-bottom: 1.5rem;
-    span {
-      color: #fff;
-      font-size: 1.4rem;
-      font-weight: 500;
-      line-height: 1.8;
-    }
-  }
-}
-
-@include all.sp {
-  .footer {
-    padding-top: all.rem(57);
-    padding-bottom: all.rem(38);
-    background: url(../../assets/images/common/footer_bg_sp.png) no-repeat center center/cover;
-    &__inner {
+    justify-content: space-between;
+    @include all.sp {
       flex-direction: column;
-      align-items: center;
-      gap: all.rem(44);
-      max-width: 500px;
+      justify-content: flex-start;
+      @include all.clamp-sp-auto(gap, 28px);
     }
-    &__address {
-      text-align: center;
+  }
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    @include all.clamp-pc-auto(gap, 30px);
+    @include all.sp {
+      flex-direction: column;
+      @include all.clamp-sp-auto(gap, 42px);
     }
-    &__contact {
-      margin: 0 auto;
-      width: all.rem(210);
+    &--nav {
+      li {
+        @include all.clamp-pc-auto(margin-bottom, 14px);
+        @include all.sp {
+          @include all.clamp-sp-auto(margin-bottom, 21px);
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      .footer__content__link {
+        color: all.$color-white;
+        @include all.clamp-pc(font-size, 13px, 15px);
+        @include all.sp {
+          @include all.clamp-sp(font-size, 14px, 14px);
+        }
+        line-height: 1.4;
+        letter-spacing: 0.028em;
+      }
     }
-    &__nav {
-      &__inner {
-        gap: all.rem(28);
+    &--company {
+      &__box {
+        display: flex;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: flex-start;
+        @include all.clamp-pc-auto(gap, 30px);
+        @include all.sp {
+          @include all.clamp-pc-auto(gap, 42px);
+        }
+      }
+      p {
+        @include all.clamp-pc(font-size, 13px, 15px);
+        @include all.clamp-pc-auto(margin-bottom, 15px);
+        @include all.sp {
+          @include all.clamp-sp(font-size, 14px, 14px);
+          @include all.clamp-sp-auto(margin-bottom, 21px);
+        }
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+        color: all.$color-white;
+      }
+      li {
+        @include all.clamp-pc-auto(margin-bottom, 10px);
+        @include all.sp {
+          @include all.clamp-sp-auto(margin-bottom, 14px);
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      .footer__content__link {
+        @include all.clamp-pc(font-size, 12px, 12px);
+        @include all.sp {
+          @include all.clamp-sp(font-size, 12px, 12px);
+        }
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+        color: all.$color-dark-gray;
       }
     }
-    &__content {
-      width: calc(100% * 98 / 275);
-    }
-    &__business {
-      width: calc(100% * 150 / 275);
-    }
-    &__logo {
-      margin-bottom: all.rem(33);
-    }
-    &__address {
-      margin-bottom: all.rem(17);
-    }
-    &__link {
-      span {
-        color: #fff;
-        font-size: all.rem(12);
-        font-weight: 500;
-        white-space: nowrap;
+    &--payment {
+      p {
+        @include all.clamp-pc(font-size, 13px, 15px);
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+        @include all.clamp-pc-auto(margin-bottom, 20px);
+        color: all.$color-white;
+        @include all.sp {
+          @include all.clamp-sp(font-size, 14px, 14px);
+          @include all.clamp-sp-auto(margin-bottom, 22px);
+        }
       }
-    }
-    &__copyright {
-      margin-top: all.rem(44);
-      text-align: center;
-    }
-    &__detail {
-      font-size: all.rem(12);
-    }
-    &__list {
-      &.--business {
-        .footer__link {
-          span {
-            font-size: 1rem;
-            padding-left: 0.7em;
-            &::after {
-              left: 0;
-              font-size: 1rem;
-            }
+      ul {
+        display: flex;
+        align-items: center;
+        @include all.clamp-pc-auto(gap, 10px);
+        @include all.sp {
+          @include all.clamp-sp-auto(gap, 14px);
+        }
+        li {
+          @include all.clamp-pc-auto(width, 30px);
+          @include all.sp {
+            @include all.clamp-sp-auto(width, 42px);
           }
         }
+      }
+    }
+  }
+  &__sns {
+    ul {
+      display: flex;
+      align-items: center;
+      @include all.clamp-pc-auto(gap, 20px);
+      @include all.clamp-pc-auto(margin-bottom, 18px);
+      @include all.sp {
+        @include all.clamp-sp-auto(gap, 28px);
+        @include all.clamp-sp-auto(margin-bottom, 28px);
+        @include all.clamp-sp-auto(margin-top, 42px);
+      }
+    }
+    p {
+      font-weight: 300;
+      font-style: Light;
+      @include all.clamp-pc(font-size, 10px, 10px);
+      line-height: 1;
+      color: all.$color-dark-gray;
+      @include all.sp {
+        @include all.clamp-sp(font-size, 10px, 10px);
+      }
+    }
+    img {
+      @include all.clamp-pc-auto(width, 18px);
+      @include all.sp {
+        @include all.clamp-sp-auto(width, 26px);
       }
     }
   }

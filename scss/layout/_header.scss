@@ -135,8 +135,14 @@
             display: none;
           }
         }
-
-        &:hover,
+        @include all.pc {
+          &:hover {
+            color: #272727;
+            svg {
+              transition: fill 0.3s;
+            }
+          }
+        }
         &.is-open {
           color: #272727;
           svg {
@@ -198,7 +204,7 @@
           padding: 0;
           min-width: 178px;
           @include all.sp {
-            padding: 25px 20px 50px;
+            padding: 0;
           }
           ul {
             gap: 14px;
@@ -244,29 +250,38 @@
             gap: 6px;
             white-space: nowrap;
             color: #272727;
-            transition: opacity 0.5s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
+            transition: all 0.5s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
+            &.is-selected {
+              color: #110a95;
+              .color-gray {
+                color: #110a95;
+              }
+            }
             @include all.sp {
               font-size: 13px;
-              @include all.clamp-sp(font-size, 13px, 18px);
+              @include all.clamp-sp(font-size, 13px, 15px);
               gap: 12px;
               line-height: 1;
               position: relative;
-              &::before {
-                content: "";
-                width: 16px;
-                height: 16px;
-                background: url(../../assets/images/common/icon_check_blue.svg) no-repeat center center/contain;
-                top: 50%;
-                transform: translateY(-50%);
-                right: 0;
-                position: absolute;
+              &.is-selected {
+                &::before {
+                  content: "";
+                  @include all.clamp-sp(width, 16px, 20px);
+                  @include all.clamp-sp(height, 16px, 20px);
+                  background: url(../../assets/images/common/icon_check_blue.svg) no-repeat center center/contain;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  right: 0;
+                  position: absolute;
+                }
               }
             }
+
             &:hover {
               color: #110a95;
-            }
-            .color-gray {
-              color: #a3a3a3;
+              .color-gray {
+                color: #110a95;
+              }
             }
           }
           @include all.sp {
@@ -302,6 +317,13 @@
     gap: 6px;
     @include all.clamp-pc-auto(padding-bottom, 15px);
     @include all.clamp-pc-auto(padding-top, 15px);
+    @include all.sp {
+      @include all.clamp-sp-auto(padding-bottom, 35px);
+      @include all.clamp-sp-auto(padding-top, 42px);
+    }
+    &:hover {
+      color: #110a95;
+    }
   }
   &__humberger {
     width: 18px;
@@ -331,12 +353,17 @@
     }
   }
 }
+@media (min-width: 768px) and (max-width: 968px) {
+  .header-setting__menu__detail {
+    left: calc(50% - 1vw);
+  }
+}
 
 .global-popup__close {
   display: none;
 }
 /* PC表示用の上書き */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   /* グローバルポップアップ */
   .global-popup {
     position: fixed;
@@ -364,8 +391,8 @@
     position: relative;
   }
   .global-popup__close {
-    width: 12px;
-    height: 12px;
+    @include all.clamp-sp(width, 12px, 15px);
+    @include all.clamp-sp(height, 12px, 15px);
     top: 25px;
     left: 20px;
     position: absolute;
