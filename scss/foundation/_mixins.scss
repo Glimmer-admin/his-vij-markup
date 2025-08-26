@@ -62,7 +62,14 @@ $breakpoint-pc-max: 1440px;
   @include clamp($property, $min, $max, $breakpoint-pc-min, $breakpoint-pc-max);
 }
 // SP用：最大値のみ入力 → 最小値は自動で0.7倍
-@mixin clamp-sp-auto($property, $max) {
-  $min: if(math.unit($max) == "rem", $max * 0.7, math.div($max * 7, 10)); // 単位維持
+// @mixin clamp-sp-auto($property, $max) {
+//   $min: if(math.unit($max) == "rem", $max * 0.7, math.div($max * 7, 10)); // 単位維持
+//   @include clamp($property, $min, $max, $breakpoint-sp-min, $breakpoint-sp-max);
+// }
+
+// SP用：最小値のみ入力 → 最大値は自動で1.428倍（10px: x = 0.7: 1）
+@mixin clamp-sp-auto($property, $min-value) {
+  $min: $min-value;
+  $max: math.div($min-value, 0.7);
   @include clamp($property, $min, $max, $breakpoint-sp-min, $breakpoint-sp-max);
 }

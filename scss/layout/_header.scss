@@ -318,8 +318,8 @@
     @include all.clamp-pc-auto(padding-bottom, 15px);
     @include all.clamp-pc-auto(padding-top, 15px);
     @include all.sp {
-      @include all.clamp-sp-auto(padding-bottom, 35px);
-      @include all.clamp-sp-auto(padding-top, 42px);
+      @include all.clamp-sp-auto(padding-bottom, 15px);
+      @include all.clamp-sp-auto(padding-top, 30px);
     }
     &:hover {
       color: #110a95;

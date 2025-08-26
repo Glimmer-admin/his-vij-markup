@@ -1,0 +1,18 @@
+@use "../foundation/all";
+
+/*===========================================================================*/
+/*  head  */
+/*===========================================================================*/
+.c-head {
+  color: all.$color-black;
+  font-feature-settings: "palt" on;
+  font-size: 34px;
+  @include all.clamp-pc(font-size, 28px, 34px);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.68px;
+  @include all.sp {
+    @include all.clamp-sp(font-size, 20px, 29px);
+    letter-spacing: 0.4px;
+  }
+}
