@@ -6,11 +6,12 @@
   position: relative;
   padding-left: 30px;
   padding-right: 30px;
+  @include all.clamp-pc-auto(margin-bottom, 80px);
   &__fixed {
     position: absolute;
-    top: 146px;
-    left: 125px;
     z-index: 10;
+    top: 146px;
+    @include all.clamp-pc-auto(left, 125px);
   }
   &__title {
     color: #fff;
@@ -31,35 +32,55 @@
     align-items: center;
     justify-content: flex-start;
     gap: 10px;
-    .top-mainvisual__input {
-      width: 324px;
-      background-color: #fff;
-      padding: 14px 20px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.4;
-      letter-spacing: 1.12px;
+    .top-mainvisual__search__text {
+      @include all.clamp-pc(width, 290px, 324px);
+      input {
+        width: 100%;
+        border-radius: 8px;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: 1.12px;
+        width: 100%;
+        background: url(/assets/images/common/icon_pin_black.svg) no-repeat 20px center/contain;
+        background-color: #fff;
+        background-size: 16px;
+        font-size: 16px;
+        padding: 14px 20px 14px 45px;
+      }
     }
-    .top-mainvisual__calendar {
+    .top-mainvisual__search__calendar {
       width: 202px;
-      background-color: #fff;
-      padding: 14px 20px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.4;
-      letter-spacing: 1.12px;
+      @include all.clamp-pc(width, 185px, 202px);
+      input {
+        width: 100%;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: 1.12px;
+        padding: 14px 28px 14px 45px;
+        background: url(/assets/images/common/icon_calendar.svg) no-repeat 20px center/contain;
+        background-color: #fff;
+        background-size: 16px 16px;
+        background-color: #fff;
+      }
     }
     .top-mainvisual__search {
-      color: #fff;
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.4;
-      letter-spacing: 1.12px;
-      padding: 14px 18px;
-      border-radius: 10px;
-      background: #110a95;
+      input {
+        cursor: pointer;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: 1.12px;
+        padding: 14px 28px;
+        border-radius: 10px;
+        background: #110a95;
+        transition: opacity 0.5s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
+        &:hover {
+          opacity: 0.7;
+        }
+      }
     }
   }
 
