@@ -16,15 +16,7 @@ body {
     overflow: hidden;
   }
 }
-main {
-  padding-top: all.rem(83);
-  @include all.sp {
-    padding-top: all.rem(75);
-  }
-  &.main-top {
-    padding-top: 0;
-  }
-}
+
 span {
   display: inline-block;
 }
@@ -93,11 +85,11 @@ a {
 /* layout */
 .l-inner {
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1160px;
 }
 @media screen and (max-width: 767px) {
   .l-inner {
-    max-width: 500px;
+    max-width: 100%;
   }
 }
 
