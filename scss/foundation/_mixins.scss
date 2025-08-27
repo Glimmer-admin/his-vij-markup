@@ -18,26 +18,41 @@
 // =============================================================================
 // CLAMP() 自動算出 MIXIN
 // =============================================================================
+$root-size: 10px !default;
+// remをpxに変換
+@function to-px($len) {
+  @if math.is-unitless($len) {
+    @return $len * 1px;
+  }
+  @if math.unit($len) == "px" {
+    @return $len;
+  }
+  @if math.unit($len) == "rem" {
+    @return math.div($len, 1rem) * $root-size;
+  }
+  @error "Unsupported unit `#{math.unit($len)}`. Use px or rem.";
+}
 
 // 基本的なclamp()算出mixin
-@mixin clamp($property, $min, $max, $min-width: 375px, $max-width: 1200px) {
-  // 単位を統一（pxに変換）
-  $min-px: if(math.unit($min) == "rem", $min * 16, $min);
-  $max-px: if(math.unit($max) == "rem", $max * 16, $max);
-  $min-width-px: if(math.unit($min-width) == "rem", $min-width * 16, $min-width);
-  $max-width-px: if(math.unit($max-width) == "rem", $max-width * 16, $max-width);
+@mixin clamp($prop, $min, $max, $min-w: 375px, $max-w: 1200px) {
+  $min-px: to-px($min);
+  $max-px: to-px($max);
+  $minw-px: to-px($min-w);
+  $maxw-px: to-px($max-w);
 
-  // 単位を除去して純粋な数値として計算
   $min-num: math.div($min-px, 1px);
   $max-num: math.div($max-px, 1px);
-  $min-width-num: math.div($min-width-px, 1px);
-  $max-width-num: math.div($max-width-px, 1px);
+  $minw-num: math.div($minw-px, 1px);
+  $maxw-num: math.div($maxw-px, 1px);
 
-  // vw値を計算（単位なしの数値で計算）
-  $slope: math.div(($max-num - $min-num), ($max-width-num - $min-width-num));
-  $y-axis-intersection: $min-num - $slope * $min-width-num;
+  @if $maxw-num == $minw-num {
+    @error "$min-w and $max-w must differ.";
+  }
 
-  #{$property}: clamp(#{$min}, calc(#{$y-axis-intersection}px + #{$slope * 100}vw), #{$max});
+  $slope: math.div(($max-num - $min-num), ($maxw-num - $minw-num));
+  $intercept: $min-num - $slope * $minw-num;
+
+  #{$prop}: clamp(#{$min}, calc(#{$intercept}px + #{$slope * 100}vw), #{$max});
 }
 
 // =============================================================================
