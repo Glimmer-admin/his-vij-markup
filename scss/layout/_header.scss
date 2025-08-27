@@ -398,6 +398,23 @@
     position: absolute;
     display: block;
   }
+  .global-popup__search {
+    margin-bottom: 20px;
+    input {
+      width: 100%;
+      font-weight: 500;
+      line-height: 1.4;
+      letter-spacing: 1.12px;
+      width: 100%;
+      background: url(/assets/images/common/icon_pin_blue.svg) no-repeat left center / contain;
+      background-color: #fff;
+      @include all.clamp-sp(background-size, 16px, 20px);
+      @include all.clamp-sp(font-size, 16px, 18px);
+      padding: 15px 0px 14px 25px;
+      @include all.clamp-sp(padding-left, 25px, 30px);
+      border-bottom: 1px solid #dfdfdf;
+    }
+  }
 
   /* デフォルトは非表示 */
   .popup-content {

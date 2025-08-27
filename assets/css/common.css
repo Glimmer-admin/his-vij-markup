@@ -864,6 +864,23 @@ th {
     position: absolute;
     display: block;
   }
+  .global-popup__search {
+    margin-bottom: 20px;
+  }
+  .global-popup__search input {
+    width: 100%;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 1.12px;
+    width: 100%;
+    background: url(/assets/images/common/icon_pin_blue.svg) no-repeat left center/contain;
+    background-color: #fff;
+    background-size: clamp(16px, 12.1734693878px + 1.0204081633vw, 20px);
+    font-size: clamp(16px, 14.0867346939px + 0.5102040816vw, 18px);
+    padding: 15px 0px 14px 25px;
+    padding-left: clamp(25px, 20.2168367347px + 1.2755102041vw, 30px);
+    border-bottom: 1px solid #dfdfdf;
+  }
   /* デフォルトは非表示 */
   .popup-content {
     display: none;
