@@ -753,10 +753,13 @@ th {
 .header-setting__menu__detail li a:hover .color-gray {
   color: #110a95;
 }
+.header-setting__menu__detail li img {
+  width: 1.6rem;
+}
 @media (max-width: 767px) {
-  .header-setting__menu__detail li svg {
-    width: clamp(18px, 13.2168367347px + 1.2755102041vw, 23px);
-    height: clamp(18px, 13.2168367347px + 1.2755102041vw, 23px);
+  .header-setting__menu__detail li img {
+    width: clamp(1.8rem, 13.2168367347px + 1.2755102041vw, 2.3rem);
+    height: clamp(1.8rem, 13.2168367347px + 1.2755102041vw, 2.3rem);
   }
 }
 .header__login a {
