@@ -284,10 +284,11 @@
               }
             }
           }
-          @include all.sp {
-            svg {
-              @include all.clamp-sp(width, 18px, 23px);
-              @include all.clamp-sp(height, 18px, 23px);
+          img {
+            width: 1.6rem;
+            @include all.sp {
+              @include all.clamp-sp(width, 1.8rem, 2.3rem);
+              @include all.clamp-sp(height, 1.8rem, 2.3rem);
             }
           }
         }
