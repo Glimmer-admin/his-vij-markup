@@ -103,7 +103,7 @@
         }
         line-height: 1.4;
         letter-spacing: 0.02em;
-        color: all.$color-dark-gray;
+        color: all.$color-gray;
       }
     }
     &--payment {
@@ -151,7 +151,7 @@
       font-style: Light;
       @include all.clamp-pc(font-size, 10px, 10px);
       line-height: 1;
-      color: all.$color-dark-gray;
+      color: all.$color-gray;
       @include all.sp {
         @include all.clamp-sp(font-size, 10px, 10px);
       }
