@@ -1,56 +1,3 @@
-// メインビジュアルしたのおすすめリストのswiper
-document.addEventListener("DOMContentLoaded", function () {
-  const appealSwiper = new Swiper(".js-appeal-slide", {
-    loop: true,
-    // モバイル（〜767px）のデフォルト
-    slidesPerView: 1.2,
-    spaceBetween: 10,
-    breakpoints: {
-      480: {
-        slidesPerView: 1.6,
-        spaceBetween: 14,
-      },
-      600: {
-        slidesPerView: 1.8,
-        spaceBetween: 14,
-      },
-      700: {
-        slidesPerView: 2.1,
-        spaceBetween: 14,
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 20,
-      },
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-});
-
-// メインビジュアルのswiper
-document.addEventListener("DOMContentLoaded", function () {
-  new Swiper(".js-mainvisual-slide", {
-    loop: true,
-    slidesPerView: 1,
-    spaceBetween: 0,
-    pagination: {
-      el: ".mainvisual-swiper-pagination",
-      clickable: true,
-      renderBullet: (index, className) => {
-        const n = index + 1;
-        return `<button type="button" class="${className}" aria-label="スライド${n}へ"></button>`;
-      },
-    },
-    navigation: {
-      prevEl: ".mainvisual-swiper-button-prev",
-      nextEl: ".mainvisual-swiper-button-next",
-    },
-  });
-});
-
 // メインビジュアルテキスト入力欄の挙動実装
 document.addEventListener("DOMContentLoaded", () => {
   const forms = Array.from(document.querySelectorAll(".js-mainvisual-search-form"));
@@ -151,4 +98,179 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!form.contains(e.target)) closeForm(form);
     });
   });
+});
+
+/*===========================================================================*/
+/*  swiper  */
+/*===========================================================================*/
+// メインビジュアルしたのおすすめリストのswiper
+document.addEventListener("DOMContentLoaded", function () {
+  const appealSwiper = new Swiper(".js-appeal-slide", {
+    loop: true,
+    // モバイル（〜767px）のデフォルト
+    slidesPerView: 1.2,
+    spaceBetween: 10,
+    breakpoints: {
+      480: {
+        slidesPerView: 1.6,
+        spaceBetween: 14,
+      },
+      600: {
+        slidesPerView: 1.8,
+        spaceBetween: 14,
+      },
+      700: {
+        slidesPerView: 2.1,
+        spaceBetween: 14,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 20,
+      },
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+});
+
+// メインビジュアルのswiper
+document.addEventListener("DOMContentLoaded", function () {
+  new Swiper(".js-mainvisual-slide", {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 0,
+    pagination: {
+      el: ".mainvisual-swiper-pagination",
+      clickable: true,
+      renderBullet: (index, className) => {
+        const n = index + 1;
+        return `<button type="button" class="${className}" aria-label="スライド${n}へ"></button>`;
+      },
+    },
+    navigation: {
+      prevEl: ".mainvisual-swiper-button-prev",
+      nextEl: ".mainvisual-swiper-button-next",
+    },
+  });
+});
+
+// 人気の商品
+document.addEventListener("DOMContentLoaded", () => {
+  // 1つのページに複数ある想定
+  document.querySelectorAll(".js-swiper-top-popular").forEach((swiperEl) => {
+    // スライダーと同じブロック内をスコープに
+    const scope = swiperEl.closest(".top-popular__content") || swiperEl.parentElement;
+    const nextEl = scope?.querySelector(".popular-swiper-button-next");
+    const prevEl = scope?.querySelector(".popular-swiper-button-prev");
+
+    // 見つからなければスキップ
+    if (!nextEl || !prevEl) return;
+
+    new Swiper(swiperEl, {
+      loop: true,
+      slidesPerView: 2.2,
+      spaceBetween: 10,
+      breakpoints: {
+        480: { slidesPerView: 2.5, spaceBetween: 14 },
+        600: { slidesPerView: 2.8, spaceBetween: 14 },
+        768: { slidesPerView: 3, spaceBetween: 16 },
+        1024: { slidesPerView: 3.5, spaceBetween: 18 },
+        1160: { slidesPerView: 4, spaceBetween: 20 },
+      },
+      navigation: {
+        nextEl, // ← DOM要素を渡す
+        prevEl, // ← DOM要素を渡す
+      },
+      // お好みで
+      watchOverflow: true, // 枚数が少ない時はナビ無効
+    });
+  });
+});
+
+// top-popular-area
+document.addEventListener("DOMContentLoaded", () => {
+  const mql = window.matchMedia("(max-width: 767.98px)");
+  const els = Array.from(document.querySelectorAll(".js-swiper-top-popular-area"));
+  const map = new Map(); // element -> swiper instance
+
+  const create = (el) => {
+    const swiper = new Swiper(el, {
+      loop: true,
+      slidesPerView: 2.2,
+      spaceBetween: 10,
+      breakpoints: {
+        480: { slidesPerView: 3.2, spaceBetween: 12 },
+        600: { slidesPerView: 4.2, spaceBetween: 14 },
+        720: { slidesPerView: 5.2, spaceBetween: 16 },
+      },
+    });
+    map.set(el, swiper);
+  };
+
+  const destroy = (el) => {
+    const s = map.get(el);
+    if (s) {
+      s.destroy(true, true); // 追加DOM/スタイルも除去
+      map.delete(el);
+    }
+  };
+
+  const toggle = (e) => {
+    els.forEach((el) => {
+      if (e.matches) {
+        if (!map.get(el)) create(el); // <768px: 初期化
+      } else {
+        destroy(el); // >=768px: 破棄（Grid表示などに戻す）
+      }
+    });
+  };
+
+  // 初回・リサイズ両対応
+  toggle(mql);
+  mql.addEventListener ? mql.addEventListener("change", toggle) : mql.addListener(toggle);
+});
+
+// magazine
+document.addEventListener("DOMContentLoaded", () => {
+  const mql = window.matchMedia("(max-width: 767.98px)");
+  const els = Array.from(document.querySelectorAll(".js-swiper-top-magazine"));
+  const map = new Map(); // element -> swiper instance
+
+  const create = (el) => {
+    const swiper = new Swiper(el, {
+      loop: true,
+      slidesPerView: 2.2,
+      spaceBetween: 10,
+      breakpoints: {
+        480: { slidesPerView: 3.2, spaceBetween: 12 },
+        600: { slidesPerView: 4.2, spaceBetween: 14 },
+        720: { slidesPerView: 5.2, spaceBetween: 16 },
+      },
+    });
+    map.set(el, swiper);
+  };
+
+  const destroy = (el) => {
+    const s = map.get(el);
+    if (s) {
+      s.destroy(true, true); // 追加DOM/スタイルも除去
+      map.delete(el);
+    }
+  };
+
+  const toggle = (e) => {
+    els.forEach((el) => {
+      if (e.matches) {
+        if (!map.get(el)) create(el); // <768px: 初期化
+      } else {
+        destroy(el); // >=768px: 破棄（Grid表示などに戻す）
+      }
+    });
+  };
+
+  // 初回・リサイズ両対応
+  toggle(mql);
+  mql.addEventListener ? mql.addEventListener("change", toggle) : mql.addListener(toggle);
 });

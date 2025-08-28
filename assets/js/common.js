@@ -274,3 +274,13 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", onResize);
 })();
 // =========END header関連 =========
+
+// topへスクロール
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".js-scroll-top").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+});
