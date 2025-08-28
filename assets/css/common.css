@@ -637,6 +637,10 @@ th {
   pointer-events: none;
   transition: opacity 0.4s ease, visibility 0.4s ease;
 }
+.header-setting__menu__detail .round-border img {
+  border: 1px solid #cfcfcf;
+  border-radius: 50%;
+}
 .header-setting__menu__detail.is-active {
   opacity: 1;
   visibility: visible;
