@@ -19,28 +19,46 @@
           <figure class="header__logo">
             <img src="../assets/images/common/header_logo.svg" alt="HIS" width="123" height="64" loading="lazy" decoding="async" />
           </figure>
-          <nav class="header-content__navigation">
-            <div class="header__humberger">
+          <nav class="header-content__navigation js-setting-selector">
+            <div class="header__humberger js-setting-toggle" data-popup-type="humberger">
               <span></span>
               <span></span>
               <span></span>
             </div>
-            <div class="header-content__navigation__humberger">
-              <ul class="header-content__navigation__menu">
-                <li class="header-content__navigation__item"><a href="" class="hover-normal">ツアー</a></li>
-                <li class="header-content__navigation__item"><a href="" class="hover-normal">チケット</a></li>
-                <li class="header-content__navigation__item"><a href="" class="hover-normal">交通手段</a></li>
-                <li class="header-content__navigation__item"><a href="" class="hover-normal">ホテル</a></li>
-              </ul>
-              <a href="" class="header-content__navigation__feature font-en hover-normal">
-                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="19" viewBox="0 0 17 19" fill="none">
-                  <path
-                    d="M5.18431 7.32804C5.48653 7.63757 5.48653 8.13868 5.18431 8.44742C4.88209 8.75695 4.39282 8.75695 4.09137 8.44742C3.78915 8.13789 3.78915 7.63678 4.09137 7.32804C4.39359 7.01851 4.88286 7.01851 5.18431 7.32804ZM15.8911 12.1452L15.4544 12.5925C15.4335 13.5685 15.064 14.5375 14.3452 15.2832L11.8973 17.8228C11.1684 18.5788 10.1961 18.9968 9.15877 19H9.14563C8.11376 19 7.14372 18.5883 6.41406 17.841L0.681931 12.0201C0.17952 11.5063 -0.0631835 10.7994 0.0141106 10.0782L0.60541 4.60321C0.64483 4.24222 0.917678 3.95486 1.26859 3.90577L6.59338 3.16005C7.31376 3.06188 8.03878 3.31283 8.54738 3.83373L14.3251 9.70138C14.6242 10.0077 14.8638 10.3529 15.0447 10.721C15.6723 9.79796 15.5842 8.50838 14.7804 7.68507L8.91298 1.82297C8.73597 1.64168 8.49172 1.55777 8.2552 1.59181L2.93042 2.33753C2.50607 2.39611 2.11728 2.09291 2.05931 1.66068C2.00211 1.22765 2.29815 0.828664 2.72018 0.769291L8.04574 0.0227729C8.75762 -0.0809322 9.49036 0.173976 9.99973 0.697251L15.8656 6.55936C17.3697 8.0991 17.3782 10.6023 15.8903 12.146L15.8911 12.1452ZM13.2337 10.8231L7.45598 4.95549C7.28362 4.77895 7.04169 4.69742 6.8013 4.72829L2.07477 5.39089L1.54994 10.2516C1.52444 10.4914 1.60482 10.7273 1.77178 10.8976L7.50391 16.7185C7.94371 17.1697 8.52573 17.4159 9.14486 17.4159H9.15259C9.77558 17.4143 10.3591 17.1634 10.7959 16.709L13.2438 14.1694C14.1365 13.2432 14.1319 11.7414 13.2329 10.8216L13.2337 10.8231Z"
-                    fill="black"
-                  />
-                </svg>
-                <span>特集</span>
-              </a>
+            <div class="global-popup js-global-popup">
+              <div class="global-popup__inner">
+                <button class="global-popup__close js-global-popup-close"><img src="../assets/images/common/icon_popup_close.svg" width="12" height="12" /></button>
+                <div class="header-content__navigation__humberger js-setting-dropdown js-popup-content js-setting-checke" data-type="humberger">
+                  <div class="humberger__form">
+                    <div class="humberger__form__item">
+                      <input type="text" id="humberger-form-text" class="humberger__form__text" placeholder="行き先" />
+                      <label for="humberger-form-text"></label>
+                    </div>
+                    <div class="humberger__form__item">
+                      <input type="text" id="humberger-form-date" class="humberger__form__date" placeholder="未定" />
+                      <label for="humberger-form-date"></label>
+                    </div>
+                    <div>
+                      <input type="text" class="humberger__form__submit" value="検索" />
+                    </div>
+                  </div>
+                  <ul class="header-content__navigation__menu">
+                    <li class="header-content__navigation__item"><a href="" class="hover-normal">ツアー</a></li>
+                    <li class="header-content__navigation__item"><a href="" class="hover-normal">チケット</a></li>
+                    <li class="header-content__navigation__item"><a href="" class="hover-normal">交通手段</a></li>
+                    <li class="header-content__navigation__item"><a href="" class="hover-normal">ホテル</a></li>
+                  </ul>
+                  <a href="" class="header-content__navigation__feature font-en hover-normal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="19" viewBox="0 0 17 19" fill="none">
+                      <path
+                        d="M5.18431 7.32804C5.48653 7.63757 5.48653 8.13868 5.18431 8.44742C4.88209 8.75695 4.39282 8.75695 4.09137 8.44742C3.78915 8.13789 3.78915 7.63678 4.09137 7.32804C4.39359 7.01851 4.88286 7.01851 5.18431 7.32804ZM15.8911 12.1452L15.4544 12.5925C15.4335 13.5685 15.064 14.5375 14.3452 15.2832L11.8973 17.8228C11.1684 18.5788 10.1961 18.9968 9.15877 19H9.14563C8.11376 19 7.14372 18.5883 6.41406 17.841L0.681931 12.0201C0.17952 11.5063 -0.0631835 10.7994 0.0141106 10.0782L0.60541 4.60321C0.64483 4.24222 0.917678 3.95486 1.26859 3.90577L6.59338 3.16005C7.31376 3.06188 8.03878 3.31283 8.54738 3.83373L14.3251 9.70138C14.6242 10.0077 14.8638 10.3529 15.0447 10.721C15.6723 9.79796 15.5842 8.50838 14.7804 7.68507L8.91298 1.82297C8.73597 1.64168 8.49172 1.55777 8.2552 1.59181L2.93042 2.33753C2.50607 2.39611 2.11728 2.09291 2.05931 1.66068C2.00211 1.22765 2.29815 0.828664 2.72018 0.769291L8.04574 0.0227729C8.75762 -0.0809322 9.49036 0.173976 9.99973 0.697251L15.8656 6.55936C17.3697 8.0991 17.3782 10.6023 15.8903 12.146L15.8911 12.1452ZM13.2337 10.8231L7.45598 4.95549C7.28362 4.77895 7.04169 4.69742 6.8013 4.72829L2.07477 5.39089L1.54994 10.2516C1.52444 10.4914 1.60482 10.7273 1.77178 10.8976L7.50391 16.7185C7.94371 17.1697 8.52573 17.4159 9.14486 17.4159H9.15259C9.77558 17.4143 10.3591 17.1634 10.7959 16.709L13.2438 14.1694C14.1365 13.2432 14.1319 11.7414 13.2329 10.8216L13.2337 10.8231Z"
+                        fill="black"
+                      />
+                    </svg>
+                    <span>特集</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </nav>
         </div>
