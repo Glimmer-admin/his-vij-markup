@@ -1,0 +1,59 @@
+/*===========================================================================*/
+/*  function  */
+/*===========================================================================*/
+/*===========================================================================*/
+/*  mixin  */
+/*===========================================================================*/
+.search {
+  padding-top: clamp(3.5rem, 17.8571428571px + 2.2321428571vw, 5rem);
+}
+.search-title {
+  font-size: clamp(2.8rem, 21.1428571429px + 0.8928571429vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.068rem;
+  margin-bottom: clamp(2.1rem, 10.7142857143px + 1.3392857143vw, 3rem);
+}
+
+.search-form {
+  margin-bottom: clamp(2.45rem, 12.5px + 1.5625vw, 3.5rem);
+}
+.search-form__form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.6rem;
+  line-height: 1.4;
+  letter-spacing: 0.112rem;
+}
+.search-form__input {
+  padding: 1.4rem 1.5rem 1.3rem 4rem;
+  font-weight: 400;
+  border: 1px solid #dfdfdf;
+  border-radius: 8px;
+  outline: none;
+}
+.search-form__input[data-target=keyword-panel] {
+  width: 24.8rem;
+  background: url(/assets/images/common/icon_pin_black.svg) no-repeat 15px center/contain;
+  background-size: 16px;
+}
+.search-form__input[data-target=date-panel] {
+  width: 16.2rem;
+  background: url(/assets/images/common/icon_calendar.svg) no-repeat 15px center/contain;
+  background-size: 16px;
+}
+.search-form__button {
+  background-color: #110a95;
+  color: #fff;
+  padding: 1.4rem 0;
+  font-weight: 500;
+  text-align: center;
+  border-radius: 8px;
+  width: 10rem;
+  cursor: pointer;
+  transition: opacity 0.5s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
+}
+.search-form__button:hover {
+  opacity: 0.7;
+}
