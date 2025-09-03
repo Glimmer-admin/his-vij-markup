@@ -414,6 +414,7 @@
     height: 16px;
     position: relative;
     display: none;
+    cursor: pointer;
     @include all.sp {
       display: block;
     }
