@@ -55,6 +55,35 @@ document.addEventListener("DOMContentLoaded", () => {
     else toggle.classList.remove("is-open");
   };
 
+  // ★★★ バックドロップ＆スクロールロック（追加） ★★★
+  let backdrop = null;
+  const ensureBackdrop = () => {
+    if (backdrop) return backdrop;
+    backdrop = document.createElement("div");
+    backdrop.className = "popup-backdrop js-popup-backdrop";
+    document.body.appendChild(backdrop);
+    // 背景クリックでクローズ
+    backdrop.addEventListener("click", async () => {
+      await closeAllPopupsAnimated();
+    });
+    return backdrop;
+  };
+  const showBackdrop = () => {
+    if (isPC()) return; // PCはドロップダウン運用なので背景なし
+    ensureBackdrop().classList.add("is-visible");
+    document.documentElement.classList.add("is-modal-open");
+    document.body.classList.add("is-modal-open");
+  };
+  const hideBackdrop = () => {
+    if (backdrop) backdrop.classList.remove("is-visible");
+    document.documentElement.classList.remove("is-modal-open");
+    document.body.classList.remove("is-modal-open");
+  };
+  // PC幅に切り替わったら念のため背景＆ロック解除
+  window.addEventListener("resize", () => {
+    if (isPC()) hideBackdrop();
+  });
+
   // ========= コンテンツ切替（is-activeの安定化） =========
   const setActiveContent = async (popup, target) => {
     if (!popup || !target) return;
@@ -93,6 +122,10 @@ document.addEventListener("DOMContentLoaded", () => {
     contents.forEach((c) => c.classList.remove("is-active"));
     setToggleOpenSP(popup, false);
     delete popup.dataset.state;
+
+    // ★ すべて閉じたら背景を消し、スクロール解除
+    const stillOpen = document.querySelector(".js-global-popup.is-open");
+    if (!stillOpen) hideBackdrop();
   };
 
   const openPopupAnimated = async (popup, targetContent) => {
@@ -116,6 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // SP時はトグルにも is-open を付与
     setToggleOpenSP(popup, true);
 
+    // ★ 開いたら背景表示＆スクロールロック
+    showBackdrop();
+
     await waitTransitionEnd(popup);
     delete popup.dataset.state;
   };
@@ -127,6 +163,9 @@ document.addEventListener("DOMContentLoaded", () => {
         await closePopupAnimated(p);
       }
     }
+    // ★ 念のため全閉時に背景OFF
+    const stillOpen = document.querySelector(".js-global-popup.is-open");
+    if (!stillOpen) hideBackdrop();
   };
 
   // ========= セレクタ単位の初期化 =========
@@ -202,6 +241,8 @@ document.addEventListener("DOMContentLoaded", () => {
           selector.querySelector(".js-setting-toggle")?.classList.remove("is-open");
         }
       });
+      // 念のためPCでは背景なし
+      hideBackdrop();
     } else {
       // SP: ポップアップ外クリックで全閉（トグル is-open も外れる）
       const opened = document.querySelector(".js-global-popup.is-open");
@@ -229,7 +270,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const MIN = 768; // 適用下限（SPに干渉させたくないので 768 に設定）
   const BASE = 968; // 基準幅（ここから下がるほど寄せる）
   const FACTOR = 0.25; // 1px縮むごとに 0.5px 寄せる
-
   const mq = window.matchMedia(`(min-width: ${MIN}px) and (max-width: ${BASE}px)`);
   const selector = ".header-setting__menu__detail";
 
@@ -237,30 +277,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const apply = () => {
     rafId = 0;
-    const vw = window.innerWidth; // 小数でもOK（ブラウザによっては整数）
-    const shrink = Math.max(0, BASE - vw); // どれだけ 968px から小さくなったか
-    const offset = shrink * FACTOR; // 0.5px/1px の割合でオフセット
+    const vw = window.innerWidth;
+    const shrink = Math.max(0, BASE - vw);
+    const offset = shrink * FACTOR;
 
     document.querySelectorAll(selector).forEach((dd) => {
       if (mq.matches) {
-        // 例）vw=967 → shrink=1 → offset=0.5 → left: calc(50% - 0.5px)
         dd.style.left = `calc(50% - ${offset}px)`;
-        dd.style.right = ""; // 念のためクリア
-        dd.style.transform = "translateX(-50%)"; // 中央基準は維持
-        // 必要ならはみ出し保険（任意）
-        // dd.style.maxWidth = "calc(100vw - 24px)";
+        dd.style.right = "";
+        dd.style.transform = "translateX(-50%)";
       } else {
-        // レンジ外はデフォルト（中央寄せ）に戻す
         dd.style.left = "50%";
         dd.style.right = "";
         dd.style.transform = "translateX(-50%)";
-        // dd.style.maxWidth = "";
       }
     });
   };
 
   const onResize = () => {
-    if (!rafId) rafId = requestAnimationFrame(apply); // rAFで負荷を抑える
+    if (!rafId) rafId = requestAnimationFrame(apply);
   };
 
   // 初期適用
@@ -268,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 幅レンジの出入りで即時再適用
   if (mq.addEventListener) mq.addEventListener("change", apply);
-  else mq.addListener(apply); // 古いブラウザ用
+  else mq.addListener(apply);
 
   // リサイズ追従
   window.addEventListener("resize", onResize);

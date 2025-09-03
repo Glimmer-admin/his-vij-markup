@@ -18,7 +18,10 @@ body {
   min-width: 375px;
   font-feature-settings: "palt" on;
 }
-body.modal-open {
+
+/* 背景スクロール禁止用クラス */
+html.is-modal-open,
+body.is-modal-open {
   overflow: hidden;
 }
 
@@ -75,6 +78,22 @@ a {
 /*===========================================================================*/
 .font-en {
   font-family: "Inter", sans-serif;
+}
+
+/* 画面いっぱいの黒背景 */
+.popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(39, 39, 39, 0.8);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 9998;
+}
+
+.popup-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /*===========================================================================*/
@@ -199,6 +218,18 @@ a:hover .hover-spin-reverse {
 
 .hover-text-parent:hover .hover-text::after {
   clip-path: inset(0);
+}
+
+.hover-translate {
+  cursor: pointer;
+  transition: transform 0.24s cubic-bezier(0.22, 0, 0.08, 1), -webkit-box-shadow 0.24s cubic-bezier(0.22, 0, 0.08, 1), -webkit-transform 0.24s cubic-bezier(0.22, 0, 0.08, 1);
+}
+.hover-translate:hover {
+  -webkit-transform: translateY(-4px) !important;
+  -ms-transform: translateY(-4px) !important;
+  transform: translateY(-4px) !important;
+  z-index: 2;
+  text-decoration: none;
 }
 
 /*! destyle.css v3.0.0 | MIT License | https://github.com/nicolas-cusan/destyle.min.css */
@@ -885,6 +916,7 @@ th {
   height: 16px;
   position: relative;
   display: none;
+  cursor: pointer;
 }
 @media (max-width: 767px) {
   .header__humberger {

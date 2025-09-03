@@ -976,7 +976,7 @@
     grid-template-areas:
       "title more"
       "list  list";
-    row-gap: 25px;
+    row-gap: 20px;
     column-gap: 24px;
     align-items: start;
     @include all.sp {
@@ -1089,6 +1089,12 @@
         width: 100%;
         height: 100%;
       }
+    }
+  }
+  &__swiper {
+    padding-top: 4px !important;
+    @include all.sp {
+      padding-top: 0 !important;
     }
   }
   &__card {
@@ -1297,6 +1303,10 @@
   }
   &__content {
     min-width: 0;
+    padding-top: 4px !important;
+    @include all.sp {
+      padding-top: 0 !important;
+    }
     .swiper-wrapper {
       display: grid !important;
       @include all.sp {
@@ -1508,6 +1518,11 @@
       padding: 15px 0;
       background-color: #fff;
       display: block;
+      transition: all 0.5s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
+      &:hover {
+        background-color: #110a95;
+        color: #fff;
+      }
     }
   }
 }
