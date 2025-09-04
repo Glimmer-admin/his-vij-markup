@@ -1,0 +1,71 @@
+@use "../foundation/all";
+
+/*===========================================================================*/
+/*  cookie  */
+/*===========================================================================*/
+.cookie {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: rgba(98, 97, 112, 0.6);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  width: 100%;
+  transform: translateY(0);
+  transition: transform 0.4s ease;
+  will-change: transform;
+
+  &.is-leave {
+    transform: translateY(100%);
+  }
+
+  &__inner {
+    padding: 30px 40px;
+    position: relative;
+    padding-bottom: calc(30px + env(safe-area-inset-bottom));
+    @include all.sp {
+      padding: 47px 20px calc(20px + env(safe-area-inset-bottom));
+    }
+  }
+  &__text {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 1.12px;
+    @include all.sp {
+      color: #fff;
+      font-size: 12px;
+      letter-spacing: 0.96px;
+    }
+    span {
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+      text-decoration-skip-ink: none;
+      text-decoration-thickness: auto;
+      text-underline-offset: auto;
+      text-underline-position: from-font;
+    }
+  }
+  &__close {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    @include all.sp {
+      width: 12px;
+      height: 12px;
+      top: 20px;
+      left: 20px;
+      transform: translate(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie {
+    transition: none;
+  }
+}

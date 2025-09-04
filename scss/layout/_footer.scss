@@ -59,11 +59,11 @@
       .footer__content__link {
         color: all.$color-white;
         @include all.clamp-pc(font-size, 13px, 15px);
+        line-height: 1.4;
+        letter-spacing: 0.028em;
         @include all.sp {
           @include all.clamp-sp(font-size, 14px, 14px);
         }
-        line-height: 1.4;
-        letter-spacing: 0.028em;
       }
     }
     &--company {
@@ -79,13 +79,13 @@
       p {
         @include all.clamp-pc(font-size, 13px, 15px);
         @include all.clamp-pc-auto(margin-bottom, 15px);
+        line-height: 1.4;
+        letter-spacing: 0.02em;
+        color: all.$color-white;
         @include all.sp {
           @include all.clamp-sp(font-size, 14px, 14px);
           @include all.clamp-sp-auto(margin-bottom, 21px);
         }
-        line-height: 1.4;
-        letter-spacing: 0.02em;
-        color: all.$color-white;
       }
       li {
         @include all.clamp-pc-auto(margin-bottom, 10px);
@@ -98,12 +98,12 @@
       }
       .footer__content__link {
         @include all.clamp-pc(font-size, 12px, 12px);
-        @include all.sp {
-          @include all.clamp-sp(font-size, 12px, 12px);
-        }
         line-height: 1.4;
         letter-spacing: 0.02em;
         color: all.$color-gray;
+        @include all.sp {
+          @include all.clamp-sp(font-size, 12px, 12px);
+        }
       }
     }
     &--payment {

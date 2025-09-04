@@ -1,0 +1,187 @@
+@use "../foundation/all";
+
+/*===========================================================================*/
+/*  global-modal  */
+/*===========================================================================*/
+
+.global-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.global-modal.is-open {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ---------- オーバーレイ ---------- */
+.global-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(39, 39, 39, 0.8);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 0;
+}
+.global-modal.is-open .global-modal__backdrop {
+  opacity: 1;
+}
+
+/* ---------- モーダル本体 ---------- */
+.global-modal__dialog {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(100% - 32px);
+  max-width: 765px;
+  background: #fff;
+  border-radius: 20px;
+  overflow: visible;
+  z-index: 1;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.98);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.global-modal.is-open .global-modal__dialog {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ---------- 内部スクロール領域 ---------- */
+.global-modal__body {
+  padding: 40px;
+  max-height: calc(100vh - 32px - 80px);
+  overflow: auto;
+  @include all.sp {
+    padding: 67px 20px 50px;
+  }
+  &.global-modal--p-25 {
+    padding-bottom: 25px;
+    @include all.sp {
+      padding-bottom: 50px;
+    }
+  }
+  &.global-modal--p-0 {
+    padding: 0;
+  }
+}
+
+/* ---------- サイズユーティリティ（2パターン） ---------- */
+.global-modal--w-765 {
+  max-width: 765px;
+}
+.global-modal--w-435 {
+  max-width: 435px;
+}
+.global-modal-complete {
+  max-width: 227px;
+  background: transparent;
+  @include all.sp {
+    width: 187px;
+  }
+}
+// 使うときだけ dialog に併用
+.global-modal--h-435 {
+  height: 435px;
+}
+
+/* ---------- 閉じるボタン（×） ---------- */
+.global-modal__close {
+  position: absolute;
+  top: 0;
+  right: -30px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.global-modal__close:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.7);
+  outline-offset: 2px;
+}
+
+/* ---------- 背景スクロール禁止（任意） ---------- */
+html.is-modal-open,
+body.is-modal-open {
+  overflow: hidden;
+}
+/* 背景の慣性スクロール抑制 */
+html.is-modal-open {
+  overscroll-behavior: contain;
+}
+
+/* モーダル内のスクロールを滑らかに（iOS） */
+.global-modal__body {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- 低モーション環境配慮 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .global-modal__backdrop,
+  .global-modal__dialog {
+    transition: none;
+  }
+}
+
+/* 閉じアニメ用（シートでも背景をフェードアウト） */
+.global-modal.is-open.is-leave .global-modal__backdrop {
+  opacity: 0;
+}
+
+@media (max-width: 767px) {
+  /* SPだけボトムシート */
+  .global-modal--sp-sheet .global-modal__dialog {
+    left: 50%;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    max-width: none;
+    border-radius: 10px 10px 0 0;
+    transform: translate(-50%, 100%); /* 画面外から */
+    opacity: 0; /* 開くときはフェードイン */
+    transition: transform 0.38s ease, opacity 0.28s ease;
+  }
+
+  /* 開く：上へスライド＋フェードイン */
+  .global-modal--sp-sheet.is-open .global-modal__dialog {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+
+  /* ★閉じる：下へスライド（不透明のまま） */
+  .global-modal--sp-sheet.is-open.is-leave .global-modal__dialog {
+    transform: translate(-50%, 100%);
+    opacity: 1; /* ← ここを 1 にするのがポイント */
+  }
+
+  /* 背景はフェードアウトでOK */
+  .global-modal.is-open.is-leave .global-modal__backdrop {
+    opacity: 0;
+  }
+
+  /* 内側スクロールなどは従来通り */
+  .global-modal--sp-sheet .global-modal__body {
+    max-height: 80vh;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* SPは×を内側に */
+  .global-modal--sp-sheet .global-modal__close {
+    top: 12px;
+    right: 12px;
+    @include all.sp {
+      top: 25px;
+      left: 20px;
+      @include all.clamp-sp(width, 12px, 15px);
+      @include all.clamp-sp(height, 12px, 15px);
+    }
+  }
+}
