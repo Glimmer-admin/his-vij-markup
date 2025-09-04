@@ -64,7 +64,7 @@
         </div>
 
         <!-- is-loginをクラスに付与するとログイン状態のヘッダーが表示されます。 -->
-        <nav class="header-setting is-login">
+        <nav class="header-setting">
           <ul class="header-setting__menu">
             <li class="header-setting__menu__link js-setting-selector">
               <a href="javascript:void(0)" class="header-setting__menu__button js-setting-toggle" data-popup-type="language">
@@ -390,7 +390,7 @@
           </ul>
         </nav>
         <!-- is-not-loginをクラスに付与すると未ログイン状態のヘッダーが表示されます。 -->
-        <nav class="header-setting">
+        <nav class="header-setting is-not-login">
           <ul class="header-setting__menu">
             <li class="header-setting__menu__link js-setting-selector">
               <a href="javascript:void(0)" class="header-setting__menu__button js-setting-toggle">
@@ -595,13 +595,13 @@
                 </ul>
               </div>
             </li>
-            <li class="header-setting__menu__link">
+            <li class="header-setting__menu__link pc-only">
               <a href="#" class="header-setting__menu__button">
                 <span>会員登録(無料)</span>
               </a>
             </li>
             <li class="header__login">
-              <a href="#" class="hover-normal">
+              <a href="javascript:void(0)" class="hover-normal" data-modal-open="#login-modal">
                 <span>ログイン</span>
               </a>
             </li>
@@ -611,6 +611,7 @@
     </header>
 
     <main class="main">
+      <!-- アフィリエイト用 -->
       <div class="affiliates" style="display: none">
         <div class="affiliates__inner">
           <div class="affiliates__partner font-en">Partner</div>
@@ -619,6 +620,16 @@
           </figure>
         </div>
       </div>
+      <!-- クッキー用 -->
+      <div class="cookie">
+        <div class="cookie__inner">
+          <button class="cookie__close js-cookie-close">
+            <img src="../assets/images/common/icon_close_white.svg" width="16" height="16" />
+          </button>
+          <p class="cookie__text">HISでは、サイトをより使いやすく改善するためにCookieを使用しています。設定を変更せずに当サイトを引き続きご利用になった場合、<span>cookieポリシー</span>に同意したものとみなされます。</p>
+        </div>
+      </div>
+
       <section class="top-mainvisual">
         <div class="top-mainvisual__inner">
           <div class="top-mainvisual__fixed">
@@ -2995,6 +3006,189 @@
           <img src="/assets/images/common/icon_top.png" alt="" width="70" height="70" />
         </a>
       </div>
+
+      <section class="modal">
+        <div class="l-inner">
+          <!-- 開くトリガー -->
+
+          <button style="font-size: 16px; display: block" data-modal-open="#cancel-modal">キャンセルモーダルを開く</button>
+          <button style="font-size: 16px; display: block" data-modal-open="#login-back-modal">おかえりモーダルを開く</button>
+          <button style="font-size: 16px; display: block" data-modal-open="#login-certification-modal">認証モーダルを開く</button>
+          <button style="font-size: 16px; display: block" data-modal-open="#login-complete-modal">完了モーダルを開く</button>
+
+          <!-- キャンセルモーダル -->
+          <div id="cancel-modal" class="global-modal global-modal--sp-sheet" aria-hidden="true">
+            <div class="global-modal__backdrop" data-modal-close></div>
+            <div class="global-modal__dialog global-modal--w-765" role="dialog" aria-modal="true" aria-labelledby="simple-modal-title">
+              <button class="global-modal__close hover-normal" type="button" aria-label="閉じる" data-modal-close>
+                <picture class="">
+                  <source srcset="../assets/images/common/icon_close_white.svg" media="(min-width: 900px)" />
+                  <img src="../assets/images/common/icon_popup_close.svg" width="20" height="20" loading="lazy" decoding="async" />
+                </picture>
+              </button>
+              <div class="global-modal__body">
+                <h2 class="cancel-modal__title">予約がキャンセルされました</h2>
+                <p class="cancel-modal__description">ここにエラーメッセージが入ります。ここにエラーメッセージが入ります。ここにエラーメッセージが入ります。ここにエラーメッセージが入ります。ここにエラーメッセージが入ります。ここにエラーメッセージが入ります。<br /><br />ここにエラーメッセージが入ります。ここにエラーメッセージが入ります。 ここにエラーメッセージが入ります。ここにエラーメッセージが入ります。ここにエラーメッセージが入ります。ここにエラーメッセージが入ります。ここにエラーメッセージが入ります。ここにエラーメッセージが入ります。<br /><br /></p>
+                <div class="cancel-modal__button">
+                  <a href="" class="hover-normal">お問い合わせ</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ログインモーダル -->
+          <div id="login-modal" class="global-modal global-modal--sp-sheet" aria-hidden="true">
+            <div class="global-modal__backdrop" data-modal-close></div>
+            <div class="global-modal__dialog global-modal--w-435" role="dialog" aria-modal="true" aria-labelledby="simple-modal-title">
+              <button class="global-modal__close hover-normal" type="button" aria-label="閉じる" data-modal-close>
+                <picture class="">
+                  <source srcset="../assets/images/common/icon_close_white.svg" media="(min-width: 900px)" />
+                  <img src="../assets/images/common/icon_popup_close.svg" width="20" height="20" loading="lazy" decoding="async" />
+                </picture>
+              </button>
+              <div class="global-modal__body">
+                <figure class="login-modal__logo">
+                  <img src="../assets/images/common/modal_logo.png" alt="" width="108" height="56" loading="lazy" decoding="async" />
+                </figure>
+                <h2 class="login-modal__title">ログイン・会員登録</h2>
+                <div class="login-modal__input">
+                  <input type="text" placeholder="exsample@exsample.com" />
+                </div>
+                <div class="login-modal__submit hover-normal">
+                  <input type="submit" value="認証コードを作成" />
+                </div>
+                <div class="login-modal__signup">サインアップ</div>
+                <ul class="login-modal__list">
+                  <li class="login-modal__item">
+                    <a href="" class="login-modal__link hover-normal">
+                      <figure class="login-modal__item__image">
+                        <img src="../assets/images/common/icon_google.svg" alt="" width="29" height="29" loading="lazy" decoding="async" />
+                      </figure>
+                    </a>
+                  </li>
+                  <li class="login-modal__item">
+                    <a href="" class="login-modal__link hover-normal">
+                      <figure class="login-modal__item__image">
+                        <img src="../assets/images/common/icon_facebook.svg" alt="" width="29" height="29" loading="lazy" decoding="async" />
+                      </figure>
+                    </a>
+                  </li>
+                  <li class="login-modal__item">
+                    <a href="" class="login-modal__link hover-normal">
+                      <figure class="login-modal__item__image">
+                        <img src="../assets/images/common/icon_wechat.svg" alt="" width="29" height="29" loading="lazy" decoding="async" />
+                      </figure>
+                    </a>
+                  </li>
+                  <li class="login-modal__item">
+                    <a href="" class="login-modal__link hover-normal">
+                      <figure class="login-modal__item__image">
+                        <img src="../assets/images/common/icon_cacaotalk.svg" alt="" width="29" height="29" loading="lazy" decoding="async" />
+                      </figure>
+                    </a>
+                  </li>
+                </ul>
+                <p class="login-modal__annotation">ログイン・会員登録することでHISの<a href="#" class="hover-normal">利用規約</a>及び<a href="#" class="hover-normal">プライバシーポリシー</a>に同意したものとみなされます</p>
+              </div>
+            </div>
+          </div>
+          <!-- ログインバックモーダル -->
+          <div id="login-back-modal" class="global-modal global-modal--sp-sheet" aria-hidden="true">
+            <div class="global-modal__backdrop" data-modal-close></div>
+            <div class="global-modal__dialog global-modal--w-435" role="dialog" aria-modal="true" aria-labelledby="simple-modal-title">
+              <button class="global-modal__close hover-normal" type="button" aria-label="閉じる" data-modal-close>
+                <picture class="">
+                  <source srcset="../assets/images/common/icon_close_white.svg" media="(min-width: 900px)" />
+                  <img src="../assets/images/common/icon_popup_close.svg" width="20" height="20" loading="lazy" decoding="async" />
+                </picture>
+              </button>
+              <div class="global-modal__body">
+                <figure class="login-modal__logo">
+                  <img src="../assets/images/common/modal_logo.png" alt="" width="108" height="56" loading="lazy" decoding="async" />
+                </figure>
+                <h2 class="login-modal__title">おかえりなさい！</h2>
+                <div class="login-modal__last">最終ログイン</div>
+                <div class="login-modal__input signup-google">
+                  <input type="text" placeholder="exsample@exsample.com" />
+                </div>
+                <div class="login-modal__submit hover-normal">
+                  <input type="submit" value="認証コードを作成" />
+                </div>
+                <div class="login-modal__other">
+                  <a href="#" class="hover-normal">
+                    <span>その他のログイン方法</span
+                    ><svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                      <path d="M1 11L7 6L1 1" stroke="black" />
+                    </svg>
+                  </a>
+                </div>
+                <p class="login-modal__annotation">ログイン・会員登録することでHISの<a href="#" class="hover-normal">利用規約</a>及び<a href="#" class="hover-normal">プライバシーポリシー</a>に同意したものとみなされます</p>
+              </div>
+            </div>
+          </div>
+          <!-- ログイン認証モーダル -->
+          <div id="login-certification-modal" class="global-modal global-modal--sp-sheet" aria-hidden="true">
+            <div class="global-modal__backdrop" data-modal-close></div>
+            <div class="global-modal__dialog global-modal--w-435" role="dialog" aria-modal="true" aria-labelledby="simple-modal-title">
+              <button class="global-modal__close hover-normal" type="button" aria-label="閉じる" data-modal-close>
+                <picture class="">
+                  <source srcset="../assets/images/common/icon_close_white.svg" media="(min-width: 900px)" />
+                  <img src="../assets/images/common/icon_popup_close.svg" width="20" height="20" loading="lazy" decoding="async" />
+                </picture>
+              </button>
+              <div class="global-modal__body global-modal--p-25">
+                <figure class="login-modal__logo">
+                  <img src="../assets/images/common/modal_logo.png" alt="" width="108" height="56" loading="lazy" decoding="async" />
+                </figure>
+                <h2 class="login-modal__title">認証コード</h2>
+                <p class="login-modal__instruction">以下のメールアドレスに届いた認証コードを入力してください</p>
+                <div class="login-modal__exchenge">
+                  <div class="login-modal__exchenge__mail">example@example.com</div>
+                  <button class="login-modal__exchenge__button hover-normal">変更</button>
+                </div>
+                <div class="login-modal__certification">
+                  <div class="login-modal__certification__inner">
+                    <div class="login-modal__certification__list">
+                      <div class="login-modal__certification__input">
+                        <input type="tel" maxlength="1" id="certification1" class="font-en" />
+                      </div>
+                      <div class="login-modal__certification__input">
+                        <input type="tel" maxlength="1" id="certification2" class="font-en" />
+                      </div>
+                      <div class="login-modal__certification__input">
+                        <input type="tel" maxlength="1" id="certification3" class="font-en" />
+                      </div>
+                      <div class="login-modal__certification__input">
+                        <input type="tel" maxlength="1" id="certification4" class="font-en" />
+                      </div>
+                      <div class="login-modal__certification__input">
+                        <input type="tel" maxlength="1" id="certification5" class="font-en" />
+                      </div>
+                      <div class="login-modal__certification__input">
+                        <input type="tel" maxlength="1" id="certification6" class="font-en" />
+                      </div>
+                    </div>
+                    <div class="login-modal__certification__resend"><span>59</span>秒後に再送信</div>
+                  </div>
+                </div>
+                <a href="#" class="login-modal__back hover-normal">前の画面に戻る</a>
+              </div>
+            </div>
+          </div>
+          <!-- ログイン完了モーダル -->
+          <div id="login-complete-modal" class="global-modal" aria-hidden="true">
+            <div class="global-modal__dialog global-modal-complete" role="dialog" aria-modal="true" aria-labelledby="simple-modal-title">
+              <div class="global-modal__body global-modal--p-0">
+                <div class="login-modal-complete">
+                  <figure class="login-modal-complete__check">
+                    <img src="../assets/images/common/icon_check_white.svg" alt="" width="71" height="71" loading="lazy" decoding="async" />
+                  </figure>
+                  <p class="login-modal-complete__text">ログイン完了</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <footer class="footer">
       <div class="footer__inner">
@@ -3098,5 +3292,7 @@
     <script src="../assets/js/common.js" crossorigin="anonymous"></script>
     <script src="../assets/js/top.js" crossorigin="anonymous"></script>
     <script src="../assets/js/japanMap.js" crossorigin="anonymous"></script>
+    <script src="../assets/js/cookie.js" crossorigin="anonymous"></script>
+    <script src="../assets/js/modal.js" crossorigin="anonymous"></script>
   </body>
 </html>
