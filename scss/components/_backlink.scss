@@ -1,0 +1,41 @@
+@use "../foundation/all";
+
+/*===========================================================================*/
+/*  backlink  */
+/*===========================================================================*/
+
+.c-backlink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45%;
+  letter-spacing: 0.42px;
+  @include all.sp {
+    font-size: 12px;
+    letter-spacing: 0.36px;
+    align-items: unset;
+  }
+  &__image {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    @include all.sp {
+      width: 18px;
+      height: 18px;
+    }
+    img {
+      width: 6px;
+      height: 6px;
+    }
+  }
+  &__text {
+    @include all.sp {
+      text-decoration: underline;
+    }
+  }
+}

@@ -197,25 +197,6 @@ a:hover .hover-spin-reverse {
   line-height: 1.6;
 }
 
-.hover-text::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, #70c3eb 0%, #6c77c9 47%, #f69b9d 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 1s 0s cubic-bezier(0.44, 0.14, 0.09, 1.02);
-}
-
-.hover-text:hover::after {
-  clip-path: inset(0);
-}
-
 .hover-text-parent:hover .hover-text::after {
   clip-path: inset(0);
 }
@@ -493,14 +474,18 @@ th {
 .header {
   padding-top: clamp(7px, 7px + 0vw, 7px);
   padding-bottom: clamp(7px, 7px + 0vw, 7px);
-  padding-left: clamp(1px, -123.5714285714px + 16.2202380952vw, 110px);
-  padding-right: clamp(1px, -123.5714285714px + 16.2202380952vw, 110px);
+  padding-left: clamp(10px, -104.2857142857px + 14.880952381vw, 110px);
+  padding-right: clamp(10px, -104.2857142857px + 14.880952381vw, 110px);
+  border-bottom: 1px solid #dfdfdf;
 }
 @media (max-width: 767px) {
   .header {
     padding-left: 20px;
     padding-right: 20px;
   }
+}
+.header.header-top {
+  border: none;
 }
 .header__inner {
   max-width: 1160px;
@@ -1523,5 +1508,47 @@ html.is-modal-open {
     left: 20px;
     width: clamp(12px, 9.1301020408px + 0.7653061224vw, 15px);
     height: clamp(12px, 9.1301020408px + 0.7653061224vw, 15px);
+  }
+}
+/*===========================================================================*/
+/*  backlink  */
+/*===========================================================================*/
+.c-backlink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.45%;
+  letter-spacing: 0.42px;
+}
+@media (max-width: 767px) {
+  .c-backlink {
+    font-size: 12px;
+    letter-spacing: 0.36px;
+    align-items: unset;
+  }
+}
+.c-backlink__image {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+@media (max-width: 767px) {
+  .c-backlink__image {
+    width: 18px;
+    height: 18px;
+  }
+}
+.c-backlink__image img {
+  width: 6px;
+  height: 6px;
+}
+@media (max-width: 767px) {
+  .c-backlink__text {
+    text-decoration: underline;
   }
 }
