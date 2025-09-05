@@ -6,11 +6,15 @@
 .header {
   @include all.clamp-pc(padding-top, 7px, 7px);
   @include all.clamp-pc(padding-bottom, 7px, 7px);
-  @include all.clamp-pc(padding-left, 1px, 110px);
-  @include all.clamp-pc(padding-right, 1px, 110px);
+  @include all.clamp-pc(padding-left, 10px, 110px);
+  @include all.clamp-pc(padding-right, 10px, 110px);
+  border-bottom: 1px solid #dfdfdf;
   @include all.sp {
     padding-left: 20px;
     padding-right: 20px;
+  }
+  &.header-top {
+    border: none;
   }
   &__inner {
     max-width: 1160px;

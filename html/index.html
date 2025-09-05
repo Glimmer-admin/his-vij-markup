@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../assets/swiper/swiper-bundle.min.css" />
   </head>
   <body>
-    <header class="header">
+    <header class="header header-top">
       <div class="header__inner">
         <div class="header-content__wrapper">
           <figure class="header__logo">
@@ -64,7 +64,7 @@
         </div>
 
         <!-- is-loginをクラスに付与するとログイン状態のヘッダーが表示されます。 -->
-        <nav class="header-setting">
+        <nav class="header-setting is-login">
           <ul class="header-setting__menu">
             <li class="header-setting__menu__link js-setting-selector">
               <a href="javascript:void(0)" class="header-setting__menu__button js-setting-toggle" data-popup-type="language">
@@ -390,7 +390,7 @@
           </ul>
         </nav>
         <!-- is-not-loginをクラスに付与すると未ログイン状態のヘッダーが表示されます。 -->
-        <nav class="header-setting is-not-login">
+        <nav class="header-setting">
           <ul class="header-setting__menu">
             <li class="header-setting__menu__link js-setting-selector">
               <a href="javascript:void(0)" class="header-setting__menu__button js-setting-toggle">
@@ -3009,8 +3009,7 @@
 
       <section class="modal">
         <div class="l-inner">
-          <!-- 開くトリガー -->
-
+          <!-- 開くトリガー テスト用なので実装時に削除お願いします。-->
           <button style="font-size: 16px; display: block" data-modal-open="#cancel-modal">キャンセルモーダルを開く</button>
           <button style="font-size: 16px; display: block" data-modal-open="#login-back-modal">おかえりモーダルを開く</button>
           <button style="font-size: 16px; display: block" data-modal-open="#login-certification-modal">認証モーダルを開く</button>
